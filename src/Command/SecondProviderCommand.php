@@ -2,19 +2,18 @@
 
 namespace App\Command;
 
-use App\Entity\Provider;
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use App\Entity\Provider;
 
-class FirstProviderCommand extends ContainerAwareCommand
+
+class SecondProviderCommand extends ContainerAwareCommand
 {
-    protected static $defaultName = 'app:first-provider';
+    protected static $defaultName = 'second-provider';
 
     protected function configure()
     {
@@ -25,9 +24,13 @@ class FirstProviderCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $endPoint = $this->getContainer()->get('doctrine')->getRepository(Provider::class)->findOneBy(array('id' => 1));
+
+        $endPoint = $this->getContainer()->get('doctrine')->getRepository(Provider::class)->findOneBy(array('id' => 2));
         $endPointUrl = $endPoint->getProviderEndpointUrl();
-        $this->getContainer()->get('app.service.provider_service')->addFirstProviderCurrencies($endPointUrl, $endPoint);
-        $io->success('First Provider added');
+        $this->getContainer()->get('app.service.provider_service')->addSecondProviderCurrencies($endPointUrl,
+            $endPoint);
+
+
+        $io->success('Second provider currencies added');
     }
 }

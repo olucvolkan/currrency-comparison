@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,12 +35,11 @@ class Provider
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $providerEndpointUrl
-
-    ;
+    private $providerEndpointUrl;
     public function __construct()
     {
         $this->currency = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

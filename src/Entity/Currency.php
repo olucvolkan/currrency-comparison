@@ -37,6 +37,10 @@ class Currency
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -67,17 +71,7 @@ class Currency
         return $this;
     }
 
-    public function getProviderId(): ?int
-    {
-        return $this->providerId;
-    }
 
-    public function setProviderId(int $providerId): self
-    {
-        $this->providerId = $providerId;
-
-        return $this;
-    }
 
     /**
      * @return mixed
@@ -93,6 +87,22 @@ class Currency
     public function setCreatedAt($createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProviderId()
+    {
+        return $this->providerId;
+    }
+
+    /**
+     * @param mixed $providerId
+     */
+    public function setProviderId($providerId): void
+    {
+        $this->providerId = $providerId;
     }
 
 }

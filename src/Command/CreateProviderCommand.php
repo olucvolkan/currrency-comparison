@@ -18,7 +18,7 @@ class CreateProviderCommand extends ContainerAwareCommand
     {
         $this
             ->setDescription('Add a provider')
-            ->addArgument('name', InputArgument::REQUIRED, 'Argument description')
+            ->addArgument('name', InputArgument::REQUIRED, 'Provider Name')
             ->addArgument('endpointUrl', InputArgument::REQUIRED, 'Provider Endpoint Url')
         ;
     }
@@ -36,7 +36,6 @@ class CreateProviderCommand extends ContainerAwareCommand
         $name = $input->getArgument('name');
         $endPointUrl = $input->getArgument('endpointUrl');
         $this->getContainer()->get('app.service.provider_service')->createProvider($name,$endPointUrl);
-
         $io->success('Created Provider!');
     }
 }

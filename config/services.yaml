@@ -24,11 +24,10 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Command\:
-        resource: '../Command'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     app.service.provider_service:
         class: App\Service\ProviderService
         arguments: ['@service_container']
+        public: true
