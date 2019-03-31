@@ -72,7 +72,15 @@ class ProviderService
         $result = json_decode($response->raw_body, true);
         foreach ($result as $currencies) {
             $currencyProvider = new Currency();
-            $currencyProvider->setSymbol($currencies["kod"]);
+            if($currencies["kod"] == "DOLAR"){
+                $currencyProvider->setSymbol("USDTRY");
+            }
+            if($currencies["kod"] == "AVRO"){
+                $currencyProvider->setSymbol("EURTRY");
+            }
+            if ($currencies["kod"] == "İNGİLİZ STERLİNİ"){
+                $currencyProvider->setSymbol("GBPTRY");
+            }
             $currencyProvider->setQuantity($currencies["oran"]);
             $currencyProvider->setProviderId($provider);
             $this->em->persist($currencyProvider);

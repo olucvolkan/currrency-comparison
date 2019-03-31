@@ -17,7 +17,7 @@ class CurrencyController extends AbstractController
     public function index(CurrencyRepository $currencyRepository)
     {
         $cheapEuro = $currencyRepository->getEuroCurrency();
-        $cheapUsd = $currencyRepository->getDolarCurrency();
+        $cheapUsd = $currencyRepository->getDollarCurrency();
         $cheapGbp = $currencyRepository->getGbpCurrency();
         return array(
             'cheapEuro' => $cheapEuro,

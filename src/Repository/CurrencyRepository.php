@@ -19,56 +19,23 @@ class CurrencyRepository extends ServiceEntityRepository
         parent::__construct($registry, Currency::class);
     }
 
-    // /**
-    //  * @return Currency[] Returns an array of Currency objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Currency
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
-
     public function getEuroCurrency(){
 
         return $this->createQueryBuilder('c')
             ->select('c')
             ->where('c.symbol = :symbol')
             ->setParameter('symbol','EURTR')
-            ->orWhere('c.symbol = :trSymbol')
-            ->setParameter('trSymbol','AVRO')
             ->setMaxResults(1)
             ->orderBy('c.quantity',"ASC")
             ->getQuery()
             ->getResult();
     }
-    public function getDolarCurrency(){
+    public function getDollarCurrency(){
 
         return $this->createQueryBuilder('c')
             ->select('c')
             ->where('c.symbol = :symbol')
-            ->setParameter('symbol','DOLAR')
-            ->orWhere('c.symbol = :trSymbol')
-            ->setParameter('trSymbol','USDTR')
+            ->setParameter('symbol','USDTR')
             ->setMaxResults(1)
             ->orderBy('c.quantity',"ASC")
             ->getQuery()
@@ -81,8 +48,6 @@ class CurrencyRepository extends ServiceEntityRepository
             ->select('c')
             ->where('c.symbol = :symbol')
             ->setParameter('symbol','GBPTR')
-            ->orWhere('c.symbol = :trSymbol')
-            ->setParameter('trSymbol','İNGİL')
             ->setMaxResults(1)
             ->orderBy('c.quantity',"ASC")
             ->getQuery()
