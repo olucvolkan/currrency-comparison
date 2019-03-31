@@ -3,18 +3,50 @@
 {% block title %}Hello CurrencyController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container container-table">
+        <div class="row vertical-center-row" >
+            <div class="col-md-12">
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col"#></th>
+                        <th scope="col">Birim</th>
+                        <th scope="col">Tutar</th>
+                        <th scope="col">Provider</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        {% for euro in cheapEuro  %}
+                        <th scope="row">{{ euro.id }}</th>
+                        <td>{{ euro.symbol }}</td>
+                        <td>{{ euro.quantity }}</td>
+                        <td>{{ euro.ProviderId.name }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% for dolar in cheapUsd  %}
+                            <th scope="row">{{ dolar.id }}</th>
+                            <td>{{ dolar.symbol }}</td>
+                            <td>{{ dolar.quantity }}</td>
+                            <td>{{ dolar.ProviderId.name }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% for gbp in cheapGbp  %}
+                            <th scope="row">{{ gbp.id }}</th>
+                            <td>{{ gbp.symbol }}</td>
+                            <td>{{ gbp.quantity }}</td>
+                            <td>{{ gbp.ProviderId.name }}</td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/volki/Developments/currency-comparison/src/Controller/CurrencyController.php'|file_link(0) }}">src/Controller/CurrencyController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/volki/Developments/currency-comparison/templates/currency/index.html.twig'|file_link(0) }}">templates/currency/index.html.twig</a></code></li>
-    </ul>
-</div>
+
+
 {% endblock %}

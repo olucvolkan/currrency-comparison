@@ -31,3 +31,7 @@ services:
         class: App\Service\ProviderService
         arguments: ['@service_container']
         public: true
+    app.service.currency_service:
+        class: App\Service\CurrencyService
+        arguments: ['@service_container']
+        public: true

@@ -2,18 +2,27 @@
 
 namespace App\Controller;
 
+
+use App\Repository\CurrencyRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CurrencyController extends AbstractController
 {
     /**
-     * @Route("/currency", name="currency")
+     * @Route("/", name="currency")
+     * @Template()
      */
-    public function index()
+    public function index(CurrencyRepository $currencyRepository)
     {
-        return $this->render('currency/index.html.twig', [
-            'controller_name' => 'CurrencyController',
-        ]);
+        $cheapEuro = $currencyRepository->getEuroCurrency();
+        $cheapUsd = $currencyRepository->getDolarCurrency();
+        $cheapGbp = $currencyRepository->getGbpCurrency();
+        return array(
+            'cheapEuro' => $cheapEuro,
+            'cheapUsd' => $cheapUsd,
+            'cheapGbp' => $cheapGbp
+        );
     }
 }

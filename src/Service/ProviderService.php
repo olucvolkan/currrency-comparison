@@ -11,10 +11,7 @@ namespace App\Service;
 use App\Entity\Currency;
 use App\Entity\Provider;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\ORMException;
-use function dump;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Unirest;
 
 class ProviderService

@@ -47,4 +47,45 @@ class CurrencyRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getEuroCurrency(){
+
+        return $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.symbol = :symbol')
+            ->setParameter('symbol','EURTR')
+            ->orWhere('c.symbol = :trSymbol')
+            ->setParameter('trSymbol','AVRO')
+            ->setMaxResults(1)
+            ->orderBy('c.quantity',"ASC")
+            ->getQuery()
+            ->getResult();
+    }
+    public function getDolarCurrency(){
+
+        return $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.symbol = :symbol')
+            ->setParameter('symbol','DOLAR')
+            ->orWhere('c.symbol = :trSymbol')
+            ->setParameter('trSymbol','USDTR')
+            ->setMaxResults(1)
+            ->orderBy('c.quantity',"ASC")
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getGbpCurrency(){
+
+        return $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.symbol = :symbol')
+            ->setParameter('symbol','GBPTR')
+            ->orWhere('c.symbol = :trSymbol')
+            ->setParameter('trSymbol','İNGİL')
+            ->setMaxResults(1)
+            ->orderBy('c.quantity',"ASC")
+            ->getQuery()
+            ->getResult();
+    }
 }
