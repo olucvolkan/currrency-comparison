@@ -26,8 +26,7 @@ class FirstProviderCommand extends ContainerAwareCommand
     {
         $io = new SymfonyStyle($input, $output);
         $endPoint = $this->getContainer()->get('doctrine')->getRepository(Provider::class)->findOneBy(array('id' => 1));
-        $endPointUrl = $endPoint->getProviderEndpointUrl();
-        $this->getContainer()->get('app.service.provider_service')->addFirstProviderCurrencies($endPointUrl, $endPoint);
+        $this->getContainer()->get('app.service.first_provider_service')->addProvider( $endPoint);
         $io->success('First Provider added');
     }
 }

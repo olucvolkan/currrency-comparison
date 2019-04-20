@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
 
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -31,7 +32,11 @@ services:
         class: App\Service\ProviderService
         arguments: ['@service_container']
         public: true
-    app.service.currency_service:
-        class: App\Service\CurrencyService
-        arguments: ['@service_container']
+    app.service.first_provider_service:
+        class: App\Service\FirstProviderService
+        arguments: ['@service_container','%env(first_url)%']
+        public: true
+    app.service.second_provider_service:
+        class: App\Service\SecondProviderService
+        arguments: ['@service_container','%env(second_url)%']
         public: true

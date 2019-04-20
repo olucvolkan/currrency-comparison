@@ -24,13 +24,8 @@ class SecondProviderCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-
         $endPoint = $this->getContainer()->get('doctrine')->getRepository(Provider::class)->findOneBy(array('id' => 2));
-        $endPointUrl = $endPoint->getProviderEndpointUrl();
-        $this->getContainer()->get('app.service.provider_service')->addSecondProviderCurrencies($endPointUrl,
-            $endPoint);
-
-
+        $this->getContainer()->get('app.service.second_provider_service')->addProvider($endPoint);
         $io->success('Second provider currencies added');
     }
 }

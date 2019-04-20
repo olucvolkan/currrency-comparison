@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Currency;
 use App\Entity\Provider;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -19,32 +20,13 @@ class ProviderRepository extends ServiceEntityRepository
         parent::__construct($registry, Provider::class);
     }
 
-    // /**
-    //  * @return Provider[] Returns an array of Provider objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function addProviderValues($symbol,$quantity,Provider $provider){
+        $currency = new Currency();
+        $currency->setSymbol($symbol);
+        $currency->setQuantity($quantity);
+        $currency->setProviderId($provider);
+        $this->_em->persist($currency);
+        $this->_em->flush();
+        return $currency;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Provider
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

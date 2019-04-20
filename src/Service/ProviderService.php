@@ -8,11 +8,9 @@
 
 namespace App\Service;
 
-use App\Entity\Currency;
 use App\Entity\Provider;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Unirest;
 
 class ProviderService
 {
@@ -49,45 +47,7 @@ class ProviderService
 
     }
 
-    public function addFirstProviderCurrencies($endpointUrl, $provider)
-    {
-        $response = Unirest\Request::get($endpointUrl);
-        $result = json_decode($response->raw_body, true);
-        foreach ($result as $currencies) {
-            foreach ($currencies as $currency) {
-                $currencyProvider = new Currency();
-                $currencyProvider->setSymbol($currency["symbol"]);
-                $currencyProvider->setQuantity($currency["amount"]);
-                $currencyProvider->setProviderId($provider);
-                $this->em->persist($currencyProvider);
-                $this->em->flush();
-            }
-        }
-    }
 
-
-    public function addSecondProviderCurrencies($endpointUrl, $provider)
-    {
-        $response = Unirest\Request::get($endpointUrl);
-        $result = json_decode($response->raw_body, true);
-        foreach ($result as $currencies) {
-            $currencyProvider = new Currency();
-            if($currencies["kod"] == "DOLAR"){
-                $currencyProvider->setSymbol("USDTRY");
-            }
-            if($currencies["kod"] == "AVRO"){
-                $currencyProvider->setSymbol("EURTRY");
-            }
-            if ($currencies["kod"] == "İNGİLİZ STERLİNİ"){
-                $currencyProvider->setSymbol("GBPTRY");
-            }
-            $currencyProvider->setQuantity($currencies["oran"]);
-            $currencyProvider->setProviderId($provider);
-            $this->em->persist($currencyProvider);
-            $this->em->flush();
-        }
-
-    }
 
 
 }

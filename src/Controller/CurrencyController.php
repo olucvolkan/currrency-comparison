@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Interfaces\ProviderInterface;
 use App\Repository\CurrencyRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +15,7 @@ class CurrencyController extends AbstractController
      * @Route("/", name="currency")
      * @Template()
      */
-    public function index(CurrencyRepository $currencyRepository)
+    public function index(CurrencyRepository $currencyRepository,ProviderInterface $provider)
     {
         $cheapEuro = $currencyRepository->getEuroCurrency();
         $cheapUsd = $currencyRepository->getDollarCurrency();
