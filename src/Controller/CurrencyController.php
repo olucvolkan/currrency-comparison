@@ -15,7 +15,7 @@ class CurrencyController extends AbstractController
      * @Route("/", name="currency")
      * @Template()
      */
-    public function index(CurrencyRepository $currencyRepository,ProviderInterface $provider)
+    public function index(CurrencyRepository $currencyRepository)
     {
         $cheapEuro = $currencyRepository->getEuroCurrency();
         $cheapUsd = $currencyRepository->getDollarCurrency();

@@ -8,12 +8,8 @@
 
 namespace App\Service;
 
-
-use App\Entity\Currency;
 use App\Entity\Provider;
 use App\Interfaces\ProviderInterface;
-use App\Repository\CurrencyRepository;
-use App\Repository\ProviderRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Unirest;
